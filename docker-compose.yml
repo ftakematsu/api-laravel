@@ -10,9 +10,9 @@ services:
     image: api-laravel
     container_name: api-laravel-app
     restart: unless-stopped
-    working_dir: /var/www/
+    working_dir: /var/www/server
     volumes:
-      - ./:/var/www
+      - ./:/var/www/server
     networks:
       - api-laravel-network
   db:
@@ -29,7 +29,7 @@ services:
     volumes:
       - ./docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
-      - travellist
+      - api-laravel-network
   nginx:
     build:
       context: .
