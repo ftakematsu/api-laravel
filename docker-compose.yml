@@ -1,55 +1,30 @@
-version: "3.9"
+version: '3.9'
+
 services:
   app:
     build:
       args:
         user: admin
-        uid: 1000
-      context: ./
+        uid: 1234
+      context: .
       dockerfile: Dockerfile
-    image: api-laravel
-    container_name: api-laravel-app
-    restart: unless-stopped
-    working_dir: /var/www/server
     volumes:
-      - ./:/var/www/server
-    networks:
-      - api-laravel-network
+      - ./app:/var/www
+      - ./public:/var/www/html
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./public:/var/www/html
+    links:
+      - app
   db:
-    image: mysql:8.0.27
-    container_name: api-laravel-db
-    restart: unless-stopped
+    image: mysql:latest
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    volumes:
-      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
-    networks:
-      - api-laravel-network
-  nginx:
-    build:
-      context: .
-      dockerfile: nginx.dockerfile
-    depends_on:
-      - php
-      - mysql
-    container_name: api-laravel-nginx
-      ports:
-        - 8000:80
-        - 443:443
-      volumes:
-        - ./:/var/www
-        - ./docker-compose/nginx:/etc/nginx/conf.d
-      networks:
-        - api-laravel-network
-
-networks:
-  api-laravel-network:
-    driver: bridge
-  laravel:
-    name: laravel
-
+    ports:
+      - "3306:3306"
