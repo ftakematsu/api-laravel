@@ -17,8 +17,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Configure as permissões dos arquivos (ajuste conforme necessário)
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap
 
-# Exponha a porta 9000 para se comunicar com o servidor web (Nginx)
+# Exponha as portas
 EXPOSE 9000
+EXPOSE 8000
+EXPOSE 80
 
 # Configure o PHP-FPM para não rodar como daemon (permitindo que o contêiner continue em execução)
 CMD ["php-fpm", "--nodaemonize"]

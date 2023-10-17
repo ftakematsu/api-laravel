@@ -5,10 +5,10 @@ services:
     image: nginx:latest
     container_name: web_container
     ports:
-      - "8000:8000"
+      - "80:80"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - .:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./var/www:/var/www
     links:
       - api
     networks:
