@@ -1,16 +1,6 @@
 version: '3.9'
 
 services:
-  app:
-    build:
-      args:
-        user: admin
-        uid: 1234
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./app:/var/www
-      - ./public:/var/www/html
   web:
     image: nginx:latest
     ports:
@@ -18,7 +8,14 @@ services:
     volumes:
       - ./public:/var/www/html
     links:
-      - app
+      - php
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/var/www
+      - ./public:/var/www/html
   db:
     image: mysql:latest
     environment:
