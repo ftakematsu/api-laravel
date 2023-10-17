@@ -1,8 +1,8 @@
 # API em Laravel
 
 ## Requisitos iniciais
- - Criar um arquivo .env, com as informações do banco de dados. Utilizar o .env.example como base.
- - Ter o PHP >= 8.2.
+ - Criar um arquivo .env na raiz do projeto, com as informações do banco de dados (schema, usuário e senha). Utilizar o .env.example como base.
+ - Ter o VSCode instalado.
 
 ## Executando com o Laragon
  - Download e instalação do [Laragon](https://laragon.org/download/index.html)
@@ -15,3 +15,10 @@
  - No Cmder, execute os comandos:
     - `php artisan migrate --seed`
     - `php artisan serv` 
+
+## Executando com o Docker
+ - Downloado do Docker (se estiver no Windows, utilize a instalação com WSL).
+ - Execute o comando `docerk-compose up -d`
+   - Caso esteja com containers anteriores, execute `docker-compose down`
+ - Aguarde até a criação dos containers.
+ - Acesse o container `docker-compose exec -w /var/www api bash`

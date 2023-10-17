@@ -1,27 +1,42 @@
-version: '3.9'
+version: '3'
 
 services:
   web:
     image: nginx:latest
+    container_name: web_container
     ports:
-      - "80:80"
+      - "8000:8000"
     volumes:
-      - ./public:/var/www/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - .:/var/www
     links:
-      - php
-  php:
+      - api
+    networks:
+      - my_network
+  api:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: api_container
+    ports:
+      - 9000:9000
     volumes:
-      - ./app:/var/www
-      - ./public:/var/www/html
-  db:
+      - .:/var/www
+    networks:
+      - my_network
+  mysql:
     image: mysql:latest
+    container_name: database
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
     ports:
       - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - my_network
+networks:
+  my_network:
