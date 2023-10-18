@@ -2,6 +2,7 @@
 
 ## Requisitos iniciais
  - Criar um arquivo .env na raiz do projeto, com as informações do banco de dados (schema, usuário e senha). Utilizar o .env.example como base.
+    - Se for utilizar o Docker, defina o DB_HOST como `mysql`, o DB_USERNAME como `admin`e o DB_PASSWORD com uma senha qualquer de sua preferência.
  - Ter o VSCode instalado.
 
 ## Executando com o Laragon
@@ -18,7 +19,17 @@
 
 ## Executando com o Docker
  - Downloado do Docker (se estiver no Windows, utilize a instalação com WSL).
- - Execute o comando `docerk-compose up -d`
+ - Execute o comando `docker-compose up -d`
    - Caso esteja com containers anteriores, execute `docker-compose down`
  - Aguarde até a criação dos containers.
  - Acesse o container `docker-compose exec -w /var/www api bash`
+ - Execute os comandos:
+    - `php artisan migrate --seed`
+    - `php artisan serv` 
+
+
+## Acesso remoto ao banco de dados do Docker
+ - Copie o arquivo de configurações para o container: `docker cp docker/mysql/my.cnf database:/etc/mysql/my.cnf` 
+ - Reinicie o container do MySQL `docker restart database`
+ - Utilize softwares clientes MySQL, como o DBeaver, por meio do endereço IP do container MySQL, porta 3306 e o usuário root, com a senha definida previamente.
+   - Para saber o endereço IP do banco de dados, utilize o comando `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' database`

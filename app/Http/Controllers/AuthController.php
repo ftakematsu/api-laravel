@@ -11,7 +11,7 @@ class AuthController extends Controller {
     public function testeApi() {
         // Array associativa
         $retorno = [
-            "message" => "Hello World!"
+            "message" => "Hello World"
         ];
 
         return response()->json($retorno, Response::HTTP_OK);
@@ -44,5 +44,13 @@ class AuthController extends Controller {
         }
     }
 
+    public function usuarioLogado() {
+        // Array associativa
+        $usuario = auth()->user();
+
+        return response()->json([
+            "usuario" => $usuario
+        ], Response::HTTP_OK);
+    }
 
 }

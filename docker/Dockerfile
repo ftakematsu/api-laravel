@@ -19,8 +19,9 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap
 
 # Exponha as portas
 EXPOSE 9000
+EXPOSE 3600
 EXPOSE 8000
-EXPOSE 80
+EXPOSE 3306
 
 # Configure o PHP-FPM para não rodar como daemon (permitindo que o contêiner continue em execução)
 CMD ["php-fpm", "--nodaemonize"]

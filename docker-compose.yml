@@ -5,10 +5,9 @@ services:
     image: nginx:latest
     container_name: web_container
     ports:
-      - "80:80"
+      - "8000:80"
     volumes:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
-      - ./var/www:/var/www
     links:
       - api
     networks:
@@ -16,7 +15,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./docker/Dockerfile
     container_name: api_container
     ports:
       - 9000:9000
