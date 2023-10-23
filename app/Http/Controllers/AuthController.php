@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class AuthController extends Controller {
             $sucesso['usuario'] = $usuario;
 
             // Geração do token de autenticação
-            $sucesso['token'] = $usuario->createToken('web-token')->plainTextToken;
+            $sucesso['token'] = $usuario->createToken(env('APP_KEY'))->plainTextToken;
 
             return response()->json($sucesso, Response::HTTP_ACCEPTED);
         }
