@@ -11,7 +11,8 @@ class AuthController extends Controller {
     public function testeApi() {
         // Array associativa
         $retorno = [
-            "message" => "Hello World"
+            "message" => "Minha api",
+            "valor" => 1234
         ];
 
         return response()->json($retorno, Response::HTTP_OK);
