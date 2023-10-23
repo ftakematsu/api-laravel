@@ -25,10 +25,8 @@
  - Acesse o container `docker-compose exec -w /var/www api bash`
  - Execute os comandos:
     - `php artisan migrate --seed`
-    - `php artisan serv` 
 
-
-## Acesso remoto ao banco de dados do Docker
+### Acesso remoto ao banco de dados do Docker
  - Copie o arquivo de configurações para o container: `docker cp docker/mysql/my.cnf database:/etc/mysql/my.cnf` 
  - Reinicie o container do MySQL `docker restart database`
  - Utilize softwares clientes MySQL, como o DBeaver, por meio do endereço IP do container MySQL, porta 3306 e o usuário root, com a senha definida previamente.
