@@ -16,6 +16,7 @@
  - No Cmder, execute os comandos:
     - `php artisan migrate --seed`
     - `php artisan serv` 
+ - Acesse o navegador e digite a URL `localhost:8000/api/test` 
 
 ## Executando com o Docker
  - Downloado do Docker (se estiver no Windows, utilize a instalação com WSL).
