@@ -30,5 +30,5 @@
 ### Acesso remoto ao banco de dados do Docker
  - Copie o arquivo de configurações para o container: `docker cp docker/mysql/my.cnf database:/etc/mysql/my.cnf` 
  - Reinicie o container do MySQL `docker restart database`
- - Utilize softwares clientes MySQL, como o DBeaver, por meio do endereço IP do container MySQL, porta 3306 e o usuário root, com a senha definida previamente.
+ - Utilize softwares clientes MySQL, como o DBeaver, por meio do endereço IP do container MySQL, porta 3307 e o usuário admin, com a senha definida previamente.
    - Para saber o endereço IP do banco de dados, utilize o comando `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' database`
