@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +53,13 @@ class AuthController extends Controller {
         return response()->json([
             "usuario" => $usuario
         ], Response::HTTP_OK);
+    }
+
+    public function logoutUser(Request $request): JsonResponse {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return response()->json(true, Response::HTTP_OK);
     }
 
 }
