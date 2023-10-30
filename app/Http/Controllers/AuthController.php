@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller {
     
     public function testeApi() {
         // Array associativa
         $retorno = [
-            "message" => "Minha api",
-            "valor" => 1234
+            "message" => "Requisição efetuada com sucesso",
+            "valor" => 200
         ];
 
         return response()->json($retorno, Response::HTTP_OK);
@@ -52,6 +54,13 @@ class AuthController extends Controller {
         return response()->json([
             "usuario" => $usuario
         ], Response::HTTP_OK);
+    }
+
+    public function logoutUser(Request $request): JsonResponse {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return response()->json(true, Response::HTTP_OK);
     }
 
 }
