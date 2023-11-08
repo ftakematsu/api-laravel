@@ -26,7 +26,8 @@
  - Aguarde até a criação dos containers.
  - Acesse o container `docker-compose exec -w /var/www api bash`
  - Execute os comandos:
-    - `php artisan migrate --seed`
+    - `composer install` (caso não tenha feito isso no projeto local)
+    - `php artisan migrate --seed` (para criar o banco de dados e as tabelas)
 
 ### Acesso remoto ao banco de dados do Docker
  - Copie o arquivo de configurações para o container: `docker cp docker/mysql/my.cnf database:/etc/mysql/my.cnf` 
