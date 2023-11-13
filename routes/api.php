@@ -15,6 +15,6 @@ Route::controller(AuthController::class)->group(function() {
 
 Route::controller(AuthController::class)->middleware('auth:sanctum')->group( function () {
 
-    Route::get('auth_user', 'usuarioLogado');
-
+    Route::get('user', 'usuarioLogado');
+    Route::post('logout', 'logoutUser');
 });
