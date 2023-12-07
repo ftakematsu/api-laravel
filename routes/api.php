@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,9 @@ Route::controller(AuthController::class)->middleware('auth:sanctum')->group( fun
 Route::controller(UserController::class)->middleware('auth:sanctum')->group( function () {
     Route::get('users', 'getAllUsers');
     Route::post('user', 'createUser');
+});
+
+Route::controller(ContactsController::class)->middleware('auth:sanctum')->group( function () {
+    Route::get('contacts', 'getAll');
+    Route::post('contact', 'create');
 });
