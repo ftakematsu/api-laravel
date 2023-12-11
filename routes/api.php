@@ -28,4 +28,7 @@ Route::controller(UserController::class)->middleware('auth:sanctum')->group( fun
 Route::controller(ContactsController::class)->middleware('auth:sanctum')->group( function () {
     Route::get('contacts', 'getAll');
     Route::post('contact', 'create');
+    Route::get('contact/{id}', 'get');
+    Route::put('contact/{id}', 'edit');
+    Route::delete('contact/{id}', 'remove');
 });

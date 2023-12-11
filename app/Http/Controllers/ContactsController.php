@@ -24,4 +24,25 @@ class ContactsController extends Controller
         return response()->json($contacts);
     }
 
+    public function remove($id) {
+        // Busca um registro pelo seu ID
+        $contact = Contact::find($id);
+        $contact->delete();
+    }
+
+    public function get($id) {
+        $contact = Contact::find($id);
+        return response()->json($contact);
+    }
+
+    public function edit($id, Request $request) {
+        $contact = Contact::where('id', $id)
+                    ->update([
+                        'name' => $request->name,
+                        'phone' => $request->phone
+                    ]);
+        return response()->json($contact);
+    }
+
+
 }
