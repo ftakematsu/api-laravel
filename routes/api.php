@@ -6,6 +6,15 @@ use App\Http\Controllers\ContactsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\TaskController;
+
+Route::controller(TaskController::class)->middleware('auth:sanctum')->group( function () {
+    Route::get('tasks', 'getAll');
+    Route::post('tasks', 'register');
+});
+
+
+
 Route::controller(AuthController::class)->group(function() {
     Route::get('test', 'testeApi');
     Route::post('auth', 'login');
@@ -32,3 +41,5 @@ Route::controller(ContactsController::class)->middleware('auth:sanctum')->group(
     Route::put('contact/{id}', 'edit');
     Route::delete('contact/{id}', 'remove');
 });
+
+
