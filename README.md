@@ -16,18 +16,21 @@
  - No Cmder, execute os comandos:
     - `php artisan migrate --seed`
     - `php artisan serv` 
+ - Acesse o navegador e digite a URL `localhost:8000/api/test` 
 
 ## Executando com o Docker
  - Downloado do Docker (se estiver no Windows, utilize a instalação com WSL).
+   - Certifique-se de que o WSL2 esteja instalado. Siga as orientações neste [link](https://docs.microsoft.com/windows/wsl/wsl2-kernel).
  - Execute o comando `docker-compose up -d`
    - Caso esteja com containers anteriores, execute `docker-compose down`
  - Aguarde até a criação dos containers.
  - Acesse o container `docker-compose exec -w /var/www api bash`
  - Execute os comandos:
-    - `php artisan migrate --seed`
+    - `composer install` (caso não tenha feito isso no projeto local)
+    - `php artisan migrate --seed` (para criar o banco de dados e as tabelas)
 
 ### Acesso remoto ao banco de dados do Docker
  - Copie o arquivo de configurações para o container: `docker cp docker/mysql/my.cnf database:/etc/mysql/my.cnf` 
  - Reinicie o container do MySQL `docker restart database`
- - Utilize softwares clientes MySQL, como o DBeaver, por meio do endereço IP do container MySQL, porta 3306 e o usuário root, com a senha definida previamente.
+ - Utilize softwares clientes MySQL, como o DBeaver, por meio do endereço IP do container MySQL, porta 3307 e o usuário admin, com a senha definida previamente.
    - Para saber o endereço IP do banco de dados, utilize o comando `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' database`

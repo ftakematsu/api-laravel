@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class AuthController extends Controller {
     public function testeApi() {
         // Array associativa
         $retorno = [
-            "message" => "Hello World"
+            "message" => "Hello World do Container Docker!"
         ];
 
         return response()->json($retorno, Response::HTTP_OK);
@@ -50,8 +51,14 @@ class AuthController extends Controller {
         $usuario = auth()->user();
 
         return response()->json([
+            "success" => true,
             "usuario" => $usuario
         ], Response::HTTP_OK);
+    }
+
+    public function logoutUser(Request $request): JsonResponse {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(true, Response::HTTP_OK);
     }
 
 }
