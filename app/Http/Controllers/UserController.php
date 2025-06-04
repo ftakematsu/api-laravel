@@ -18,4 +18,11 @@ class UserController extends Controller {
         return response()->json($user, Response::HTTP_CREATED);
     }
 
+    public function testAuth() {
+        $data = [
+            "message" => "Sucesso!"
+        ];
+        return response()->json($data);
+    }
+
 }

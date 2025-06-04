@@ -28,3 +28,9 @@ Route::controller(UserController::class)
     ->middleware('auth:sanctum')->group( function () {
     Route::post('user', 'store');
 });
+
+// Exemplo de método que exige autenticação do usuário
+Route::group(['middleware' => 'auth:sanctum'], function () { // Adição de camada de segurança
+    Route::get('test-auth', [UserController::class, 'testAuth']);
+});
+
