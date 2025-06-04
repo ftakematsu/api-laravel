@@ -34,3 +34,7 @@
  - Reinicie o container do MySQL `docker restart database`
  - Utilize softwares clientes MySQL, como o DBeaver, por meio do endereço IP do container MySQL, porta 3307 e o usuário admin, com a senha definida previamente.
    - Para saber o endereço IP do banco de dados, utilize o comando `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' database`
+
+# Extensões do VSCode recomendadas
+ - PHP Intelephense
+ - Material Icon Theme
