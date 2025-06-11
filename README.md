@@ -5,19 +5,6 @@
     - Se for utilizar o Docker, defina o DB_HOST como `mysql`, o DB_USERNAME como `admin`e o DB_PASSWORD com uma senha qualquer de sua preferência.
  - Ter o VSCode instalado.
 
-## Executando com o Laragon
- - Download e instalação do [Laragon](https://laragon.org/download/index.html)
- - Baixe o arquivo .zip do [PHP 8.2](https://windows.php.net/download#php-8.2) e descompacte na pasta C:/laragon/bin/php. Em seguida, clique direito em uma área vazia da janela do Laragon e selecione a versão do PHP.
- - Abra o Terminal do próprio Laragon (Cmder) Clonar ou fazer download deste projeto na pasta C:/laragon/www
- - Navegar até a pasta `cd api-laravel`
- - Executar o comando `composer install`
- - Abra o projeto com o VSCode `code .` na pasta do projeto.
- - Clique no botão Start do Laragon e verá que será executado o Apache e o MySQL 8.
- - No Cmder, execute os comandos:
-    - `php artisan migrate --seed`
-    - `php artisan serv` 
- - Acesse o navegador e digite a URL `localhost:8000/api/test` 
-
 ## Executando com o Docker
  - Downloado do Docker (se estiver no Windows, utilize a instalação com WSL).
    - Certifique-se de que o WSL2 esteja instalado. Siga as orientações neste [link](https://docs.microsoft.com/windows/wsl/wsl2-kernel).
@@ -40,3 +27,16 @@
 # Extensões do VSCode recomendadas
  - PHP Intelephense
  - Material Icon Theme
+ 
+## Executando com o Laragon (opcional)
+ - Download e instalação do [Laragon](https://laragon.org/download/index.html)
+ - Baixe o arquivo .zip do [PHP 8.2](https://windows.php.net/download#php-8.2) e descompacte na pasta C:/laragon/bin/php. Em seguida, clique direito em uma área vazia da janela do Laragon e selecione a versão do PHP.
+ - Abra o Terminal do próprio Laragon (Cmder) Clonar ou fazer download deste projeto na pasta C:/laragon/www
+ - Navegar até a pasta `cd api-laravel`
+ - Executar o comando `composer install`
+ - Abra o projeto com o VSCode `code .` na pasta do projeto.
+ - Clique no botão Start do Laragon e verá que será executado o Apache e o MySQL 8.
+ - No Cmder, execute os comandos:
+    - `php artisan migrate --seed`
+    - `php artisan serv` 
+ - Acesse o navegador e digite a URL `localhost:8000/api/test` 
