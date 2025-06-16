@@ -12,10 +12,6 @@ Route::controller(AuthController::class)->group(function() {
     Route::post('auth', 'login');
 });
 
-Route::controller(ItemController::class)->group(function() {
-    Route::post('items', 'create');
-    Route::get('items', 'getAll');
-});
 
 /* Requisições que precisam de um token de autenticação */
 Route::controller(AuthController::class)
@@ -32,5 +28,6 @@ Route::controller(UserController::class)
 // Exemplo de método que exige autenticação do usuário
 Route::group(['middleware' => 'auth:sanctum'], function () { // Adição de camada de segurança
     Route::get('test-auth', [UserController::class, 'testAuth']);
+    Route::get('items', [ItemController::class, 'getAll']);
 });
 
