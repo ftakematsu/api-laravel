@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('value');
+            $table->unsignedBigInteger('user_id');
+            // Definir uma chave estrangeira
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
