@@ -16,7 +16,7 @@ class ItemController extends Controller
     }
 
     public function getAll() {
-        $user = auth()->user()->id;
+        $user = auth()->user();
         $resource = Item::where('user_id', $user->id)->get();
         return response()->json($resource);
     }
