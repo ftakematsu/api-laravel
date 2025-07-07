@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MensagemEnviada;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
@@ -31,3 +32,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () { // Adição de cama
     Route::get('items', [ItemController::class, 'getAll']);
 });
 
+Route::post('/enviar', function (Request $request) {
+    $msg = $request->input('mensagem');
+    broadcast(new MensagemEnviada($msg))->toOthers();
+
+    return response()->json(['status' => 'ok']);
+});

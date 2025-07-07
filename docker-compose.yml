@@ -37,5 +37,16 @@ services:
       - ./mysql_data:/var/lib/mysql
     networks:
       - my_network
+  soketi:
+    image: 'quay.io/soketi/soketi:1.4-16-alpine'
+    environment:
+      SOKETI_DEBUG: '1'
+      SOKETI_APP_ID: 'app-id'
+      SOKETI_APP_KEY: 'app-key'
+      SOKETI_APP_SECRET: 'app-secret'
+    ports:
+      - '6001:6001'
+    networks:
+      - my_network
 networks:
   my_network:
